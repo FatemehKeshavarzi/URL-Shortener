@@ -8,7 +8,7 @@ class ShortenedURL(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     original_url = Column(String, nullable=False)
-    short_code = Column(String(10), unique=True, nullable=False)
+    short_code = Column(String(10), unique=True, nullable=False, Index=True)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
     expires_at = Column(DateTime, nullable=True)
 
