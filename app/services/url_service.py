@@ -1,5 +1,6 @@
 from repositories.url_repository import URLRepository
 from models.url import ShortenedURL
+from schemas.url_schema import 
 
 
 
