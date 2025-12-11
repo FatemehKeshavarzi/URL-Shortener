@@ -5,12 +5,20 @@ class URLRepository:
     def __init__(self, db):
         self.db = db
 
-    def create(self, original_url: str, short_code: str) -> ShortenedURL:
-        shortenedurl = ShortenedURL(original_url=original_url, short_code=short_code)
-        self.db.add(shortenedurl)
+    def add(self, obj):
+        self.db.add(obj)
+
+    def flush(self):
+        self.db.flush()
+
+    def commit(self):
         self.db.commit()
-        self.db.refresh(shortenedurl)
-        return shortenedurl
+
+    def refresh(self, obj):
+        self.db.refresh(obj)
     
     def get_by_code(self, code: str) -> Optional[ShortenedURL]:
         return self.db.query(ShortenedURL).filter(ShortenedURL.short_code == code).first()
+    
+    def get_by_origonal_url(self, origonal_url: str) -> Optional[ShortenedURL]:
+        return self.db.query(ShortenedURL).filter(ShortenedURL.original_url == origonal_url).first()
