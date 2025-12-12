@@ -7,6 +7,8 @@ class URLCreate(BaseModel):
 
     @validator("original_url", pre=True)
     def validate_url(cls, v):
+        if not isinstance(v, str):
+            raise ValueError("Invalid input type")
         url = v.strip()
 
         # allowed_tlds = [".com", ".ir", ".net"]
@@ -14,7 +16,7 @@ class URLCreate(BaseModel):
         #     raise ValueError(f"URL must end with one of {allowed_tlds}")
         
         try:
-            HttpUrl.validate(url)
+            HttpUrl(url)
         except:
             raise ValueError("Invalid URL format")
 
