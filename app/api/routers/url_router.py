@@ -69,7 +69,7 @@ def list_urls(service: URLService = Depends(get_url_service)):
     return ResponseSchema(data=urls)
 
 
-@router.delete('/{code}', response_model=ResponseSchema[str])
+@router.delete('/{code}', response_model=ResponseSchema[str], status_code=status.HTTP_204_NO_CONTENT)
 def delete_url(code:str, service: URLService = Depends(get_url_service)):
     try:
         service.delete_by_code(code=code)
