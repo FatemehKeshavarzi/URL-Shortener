@@ -75,49 +75,39 @@ Screenshots are located in:
 <!-- ```
 /postman -->
 
-  Correct post response:
+ ### Correct POST response:
+![Correct POST](images/1.png)
+![Correct POST 2](images/2.png)
 
-  ![Alt Text](images\1.png)
-  ![Alt Text](images\2.png)
+### Incorrect POST response:
+![Incorrect POST](images/3.png)
 
-  Incorrect post response:
+### Correct GET ALL response:
+![Correct GET ALL](images/4.png)
+![Correct GET ALL 2](images/5.png)
 
-  ![Alt Text](images\3.png)
+### Incorrect GET ALL response:
+![Incorrect GET ALL](images/12.png)
 
-  Correct get all url response:
+### Correct GET specific URL:
+![Correct GET](images/7.png)
 
-  ![Alt Text](images\4.png)
-  ![Alt Text](images\5.png)
+### Incorrect GET specific URL:
+![Incorrect GET](images/6.png)
 
-  inCorrect get all url response:
+### Correct DELETE response:
+![Correct DELETE](images/9.png)
 
-  ![Alt Text](images\12.png)
+### Incorrect DELETE response:
+![Incorrect DELETE](images/8.png)
 
-  Correct specific url response:
+### Scheduler (TTL) Demo:
+**Before expiration:**
+![Before TTL](images/10.png)
 
-  ![Alt Text](images\7.png)
+**After expiration (deleted by scheduler):**
+![After TTL](images/11.png)
 
-  incorrect specific url response:
-
-  ![Alt Text](images\6.png)
-
-  correct delete respose:
-
-  ![Alt Text](images\9.png)
-
-  incorrect delete respose:
-
-  ![Alt Text](images\8.png)
-
-  using scheduler:
-
-  As you can see we have this url
-
-  ![Alt Text](images\10.png)
-
-  but when the time ends scheduler delete’s it
-
-  ![Alt Text](images\11.png)
 
 
 
@@ -148,4 +138,5 @@ Filenames must clearly show:
 - Success or error
 ---
 **✔ Make sure this README is fully completed before submission.**
+
 
