@@ -9,7 +9,7 @@ router = APIRouter(prefix="/urls", tags=["ShortenedURL"])
 @router.post("/", response_model=URLResponse, status_code=status.HTTP_201_CREATED)
 async def create_url(payload: URLCreate, service: URLService = Depends(get_url_service)):
     try:
-        shortened_url = service.create(payload.original_url)
+        shortened_url = service.create(str(payload.original_url))
         return URLResponse(
             status="success",
             id=shortened_url.id,
@@ -27,14 +27,14 @@ async def create_url(payload: URLCreate, service: URLService = Depends(get_url_s
                     message=str(e)
                 ).model_dump()
             )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=URLResponse(
-                status="failure",
-                message="An unexpected error occurred."
-            ).model_dump()
-        )
+    # except Exception as e:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    #         detail=URLResponse(
+    #             status="failure",
+    #             message="An unexpected error occurred."
+    #         ).model_dump()
+    #     )
 
 @router.get("/u/{code}", response_model=URLResponse)
 async def get_url(code: str, service: URLService = Depends(get_url_service)):
@@ -49,7 +49,7 @@ async def get_url(code: str, service: URLService = Depends(get_url_service)):
         #     expires_at=original_url.expires_at,
         #     message=None
         # )
-        return RedirectResponse(url=original_url, status_code=status.HTTP_302_FOUND)
+        return RedirectResponse(url=original_url.original_url, status_code=status.HTTP_302_FOUND)
         
     except ValueError as e:
         raise HTTPException(

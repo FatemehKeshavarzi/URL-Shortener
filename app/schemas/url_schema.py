@@ -1,26 +1,24 @@
-from pydantic import BaseModel, HttpUrl, validator, Field
+from pydantic import BaseModel, HttpUrl, validator, Field, AnyHttpUrl
 from datetime import datetime
 from typing import Optional, Literal
 
 class URLCreate(BaseModel):
-    original_url: HttpUrl = Field(..., min_length=1)
+    original_url: HttpUrl 
 
     @validator("original_url", pre=True)
     def validate_url(cls, v):
-        if not isinstance(v, str):
-            raise ValueError("Invalid input type")
-        url = v.strip()
+        if isinstance(v, str):
+            v = v.strip()
 
-        # allowed_tlds = [".com", ".ir", ".net"]
-        # if not any(url.endswith(tld) for tld in allowed_tlds):
-        #     raise ValueError(f"URL must end with one of {allowed_tlds}")
+        if v.endswith("//"):
+            raise ValueError("URL cannot end with '//'")
         
-        try:
-            HttpUrl(url)
-        except:
-            raise ValueError("Invalid URL format")
 
-        return url
+        allowed_tlds = [".com", ".ir", ".net"]
+        if not any(v.endswith(tld) for tld in allowed_tlds):
+            raise ValueError(f"URL must end with one of {allowed_tlds}")
+        
+        return v
 
 class URLResponse(BaseModel):
     id:  Optional[int] = None
