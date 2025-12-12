@@ -4,6 +4,6 @@ from app.repositories.url_repository import URLRepository
 
 
 def delete_expired_urls() -> None:
-    db = get_db()
+    db = next(get_db())
     url_service = URLService(url_repo=URLRepository(db=db))
     url_service.delete_expired_urls()
