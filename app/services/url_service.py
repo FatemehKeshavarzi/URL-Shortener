@@ -1,9 +1,9 @@
 from typing import Sequence
-from datetime import datetime
 from app.repositories.url_repository import URLRepository
 from app.models.url import ShortenedURL
 from app.utils.short_code_generator import encode_base62
-
+from datetime import datetime, timedelta
+from app.services.setting import TTL_TIME
 
 
 class URLService:
@@ -11,11 +11,8 @@ class URLService:
         self.url_repo = url_repo
 
     def create(self, original_url: str) -> ShortenedURL:
-        existing = self.url_repo.get_by_origonal_url(original_url)
-        if existing:
-            raise ValueError(f"There is a link named ({original_url}) . please try another link.")
-        
-        new_url = ShortenedURL(original_url=original_url)
+        now = datetime.now()
+        new_url = ShortenedURL(original_url=original_url, expires_at=now + timedelta(minutes=TTL_TIME))
         self.url_repo.add(new_url)
         self.url_repo.flush()  
 
