@@ -72,32 +72,52 @@ For each route, two screenshots have been added:
 - Successful response (2xx)
 - Error-handled response (4xx)
 Screenshots are located in:
-```
-/postman
-Correct post response:
-<img width="975" height="525" alt="image" src="https://github.com/user-attachments/assets/7d854ba8-f04c-469b-b3b2-99e2e78edd56" />
-<img width="975" height="495" alt="image" src="https://github.com/user-attachments/assets/689fa1bf-f79f-451e-b695-96bdb2105954" />
-Incorrect post response:
-<img width="975" height="524" alt="image" src="https://github.com/user-attachments/assets/f197755b-c6f9-4146-bbc4-267d8d4776f2" />
-Correct get all url response:
-<img width="975" height="523" alt="image" src="https://github.com/user-attachments/assets/3438b76b-29db-4e23-b7c4-4ce86e1b569e" />
-<img width="975" height="518" alt="image" src="https://github.com/user-attachments/assets/24a5c4cd-a7a4-414c-b39c-b34d43bae5d8" />
-inCorrect get all url response:
-Correct specific url response:
-<img width="975" height="520" alt="image" src="https://github.com/user-attachments/assets/c1e346fc-8960-4be4-9edd-d3fb404957b6" />
-incorrect specific url response:
-<img width="975" height="524" alt="image" src="https://github.com/user-attachments/assets/7a84d8f0-8730-4194-9465-169dd17ecc90" />
-correct delete respose:
-<img width="975" height="523" alt="image" src="https://github.com/user-attachments/assets/dcfeea8b-c413-4d08-91fb-1bdf2302f294" />
-incorrect delete respose:
-<img width="975" height="525" alt="image" src="https://github.com/user-attachments/assets/9bb0d2c7-439e-459e-a9da-35b751877b12" />
+<!-- ```
+/postman -->
 
-using scheduler:
-As you can see we have this url
- <img width="975" height="524" alt="image" src="https://github.com/user-attachments/assets/dd54a04d-7387-4519-a365-8848f58df7b8" />
+  Correct post response:
 
-but when the time ends scheduler delete’s  it
- <img width="975" height="567" alt="image" src="https://github.com/user-attachments/assets/566fdf01-057c-4b00-95d7-9077ae6df27c" />
+  ![Alt Text](images\1.png)
+  ![Alt Text](images\2.png)
+
+  Incorrect post response:
+
+  ![Alt Text](images\3.png)
+
+  Correct get all url response:
+
+  ![Alt Text](images\4.png)
+  ![Alt Text](images\5.png)
+
+  inCorrect get all url response:
+
+  ![Alt Text](images\12.png)
+
+  Correct specific url response:
+
+  ![Alt Text](images\7.png)
+
+  incorrect specific url response:
+
+  ![Alt Text](images\6.png)
+
+  correct delete respose:
+
+  ![Alt Text](images\9.png)
+
+  incorrect delete respose:
+
+  ![Alt Text](images\8.png)
+
+  using scheduler:
+
+  As you can see we have this url
+
+  ![Alt Text](images\10.png)
+
+  but when the time ends scheduler delete’s it
+
+  ![Alt Text](images\11.png)
 
 
 
