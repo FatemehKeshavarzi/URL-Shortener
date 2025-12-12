@@ -4,7 +4,7 @@ from app.repositories.url_repository import URLRepository
 from app.db.session import SessionLocal
 
 app = FastAPI(
-    title="ToDo List API - version",
+    title="URL Shortener",
     description="Web API format",
     version="1.0.0",
     docs_url="/docs",
