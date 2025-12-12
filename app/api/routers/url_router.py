@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.services.url_service import URLService
-from app.api.schemas.url_schema import URLCreate, URLResponse
+from app.api.schemas.url_schema import URLCreate, URLResponse, URLListSchema
 from app.api.schemas.request_schema import ResponseSchema, ErrorSchema
 from app.api.dependencies import get_url_service
 from app.models import ShortenedURL
@@ -63,7 +63,7 @@ async def get_url(code: str, service: URLService = Depends(get_url_service)):
         )
 
 
-@router.get('/', response_model=ResponseSchema[list[ShortenedURL]])
+@router.get('/', response_model=ResponseSchema[list[URLListSchema]])
 def list_urls(service: URLService = Depends(get_url_service)):
     ...
 
