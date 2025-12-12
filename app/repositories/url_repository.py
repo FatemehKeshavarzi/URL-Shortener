@@ -1,5 +1,5 @@
 from typing import List, Optional
-from models.url import ShortenedURL
+from app.models.url import ShortenedURL
 
 class URLRepository:
     def __init__(self, db):

@@ -1,6 +1,6 @@
-from repositories.url_repository import URLRepository
-from models.url import ShortenedURL
-from utils.short_code_generator import encode_base62
+from app.repositories.url_repository import URLRepository
+from app.models.url import ShortenedURL
+from app.utils.short_code_generator import encode_base62
 
 
 
