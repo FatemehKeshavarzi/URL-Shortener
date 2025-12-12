@@ -1,7 +1,9 @@
-from pydantic import BaseModel, HttpUrl, validator
+from pydantic import BaseModel, HttpUrl, validator, Field
+from datetime import datetime
+from typing import Optional, Literal
 
-class CreateLinkSchema(BaseModel):
-    original_url: HttpUrl
+class URLCreate(BaseModel):
+    original_url: HttpUrl = Field(..., min_length=1)
 
     @validator("original_url", pre=True)
     def validate_url(cls, v):
@@ -18,5 +20,14 @@ class CreateLinkSchema(BaseModel):
 
         return url
 
+class URLResponse(BaseModel):
+    id: int
+    original_url: str
+    short_code: str
+    created_at: datetime
+    expires_at: Optional[datetime]
+
+    class Config:
+        from_attributes = True
 
 

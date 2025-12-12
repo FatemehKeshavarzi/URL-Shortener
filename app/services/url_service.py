@@ -29,7 +29,7 @@ class URLService:
         return new_url
     
     def get_by_code(self, code: str) -> str:
-        link = self.url_repo.get_by_code(code)
+        link = self.url_repo.get_by_code(code).original_url
         if not link:
-            raise ValueError(f"There is no such a link named ({link}) . please try another code")
-        return link.original_url
+            raise ValueError(f"There is no such a shortened_link named ({code}) . please try another code")
+        return link
