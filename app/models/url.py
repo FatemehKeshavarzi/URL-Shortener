@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, Index
-from url_shortener.models.base import Base 
+from models.base import Base 
 
 
 class ShortenedURL(Base):

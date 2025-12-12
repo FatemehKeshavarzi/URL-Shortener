@@ -11,7 +11,7 @@ class URLService:
     def create(self, original_url: str) -> ShortenedURL:
         existing = self.url_repo.get_by_origonal_url(original_url)
         if existing:
-            return existing
+            raise ValueError(f"There is a link named ({original_url}) . please try another link.")
         
         new_url = ShortenedURL(original_url=original_url)
         self.url_repo.add(new_url)
@@ -28,8 +28,8 @@ class URLService:
         self.url_repo.commit()
         return new_url
     
-    def get_by_code(self, code: str) -> str:
-        link = self.url_repo.get_by_code(code).original_url
+    def get_by_code(self, code: str) -> ShortenedURL:
+        link = self.url_repo.get_by_code(code)
         if not link:
             raise ValueError(f"There is no such a shortened_link named ({code}) . please try another code")
         return link
