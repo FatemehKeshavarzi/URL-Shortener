@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from services.url_service import URLService
 from schemas.url_schema import URLResponse, URLCreate
+from api.dependencies import get_url_service
 
 router = APIRouter(prefix="/urls", tags=["ShortenedURL"])
 
