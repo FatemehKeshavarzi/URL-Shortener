@@ -1,3 +1,4 @@
+from typing import Sequence
 from app.repositories.url_repository import URLRepository
 from app.models.url import ShortenedURL
 from app.utils.short_code_generator import encode_base62
@@ -33,3 +34,12 @@ class URLService:
         if not link:
             raise ValueError(f"There is no such a shortened_link named ({code}) . please try another code")
         return link
+    
+    def list_urls(self) -> Sequence[ShortenedURL]:
+        return self.url_repo.all()
+
+    def delete_by_code(self, code:str) -> None:
+        url = self.url_repo.get_by_code(code=code)
+        if not url:
+            raise ValueError("url not found")
+        self.url_repo.delete_by_code(url=url)

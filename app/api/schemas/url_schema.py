@@ -18,13 +18,11 @@ class URLCreate(BaseModel):
 
 
 class URLResponse(BaseModel):
-    id:  Optional[int] = None
-    original_url: Optional[str] = None
-    short_code: Optional[str] = None
-    created_at: Optional[datetime] = None
-    expires_at: Optional[datetime] = None
-    message: Optional[str] = None
-    status: Literal["success", "failure"]
+    id: int
+    original_url: str
+    short_code: str
+    created_at: datetime
+    expires_at: datetime | None = None
 
     class Config:
         from_attributes = True
