@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.services.url_service import URLService
-from app.schemas.url_schema import URLResponse, URLCreate
+from app.api.schemas.url_schema import URLCreate, URLResponse
+from app.api.schemas.request_schema import ResponseSchema, ErrorSchema
 from app.api.dependencies import get_url_service
+from app.models import ShortenedURL
 from fastapi.responses import RedirectResponse
 
 router = APIRouter(prefix="/urls", tags=["ShortenedURL"])
@@ -59,3 +61,15 @@ async def get_url(code: str, service: URLService = Depends(get_url_service)):
                 message=str(e)
             ).model_dump()
         )
+
+
+@router.get('/', response_model=ResponseSchema[list[ShortenedURL]])
+def list_urls(service: URLService = Depends(get_url_service)):
+    ...
+
+
+@router.delete('/{short_code}', response_model=ResponseSchema[str])
+def delete_url(short_code:str, service: URLService = Depends(get_url_service)):
+    ...
+               
+               
