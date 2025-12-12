@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List, Optional, Sequence
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -29,6 +30,10 @@ class URLRepository:
         stmt = select(ShortenedURL)
         return self.db.scalars(stmt).all()
     
-    def delete_by_code(self, url:ShortenedURL) -> None:
+    def delete(self, url:ShortenedURL) -> None:
         self.db.delete(url)
         self.commit()
+
+    def filter(self, expired_at__lt:datetime) -> Sequence[ShortenedURL]:
+        stmt = select(ShortenedURL).where(ShortenedURL.expires_at < expired_at__lt)
+        return self.db.scalars(stmt).all()

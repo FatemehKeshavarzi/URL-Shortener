@@ -1,4 +1,5 @@
 from typing import Sequence
+from datetime import datetime
 from app.repositories.url_repository import URLRepository
 from app.models.url import ShortenedURL
 from app.utils.short_code_generator import encode_base62
@@ -42,4 +43,9 @@ class URLService:
         url = self.url_repo.get_by_code(code=code)
         if not url:
             raise ValueError("url not found")
-        self.url_repo.delete_by_code(url=url)
+        self.url_repo.delete(url=url)
+
+    def delete_expired_urls(self) -> None:
+        urls = self.url_repo.filter(expired_at__lt=datetime.now())
+        for url in urls:
+            self.url_repo.delete(url=url)

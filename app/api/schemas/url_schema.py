@@ -24,8 +24,6 @@ class URLResponse(BaseModel):
     created_at: datetime
     expires_at: datetime | None = None
 
-    class Config:
-        orm_mode = True
 
 
 class URLListSchema(BaseModel):

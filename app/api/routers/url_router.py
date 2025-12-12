@@ -35,17 +35,17 @@ async def get_url(code: str, service: URLService = Depends(get_url_service)):
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content=ErrorSchema(message=str(e)).model_dump())
 
 
-@router.get('/', response_model=ResponseSchema[list[ShortenedURL]])
+@router.get('/', response_model=ResponseSchema[list[URLListSchema]])
 def list_urls(service: URLService = Depends(get_url_service)):
     urls = service.list_urls()
     return ResponseSchema(data=urls)
 
 
-@router.delete('/{code}', response_model=ResponseSchema[str])
+@router.delete('/{code}',response_model=ResponseSchema[str] )
 def delete_url(code:str, service: URLService = Depends(get_url_service)):
     try:
         service.delete_by_code(code=code)
-        return ResponseSchema(data='deleted')
+        return ResponseSchema(data="URL deleted successfully.")
     except Exception as e:
         return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content=ErrorSchema(message=str(e)).model_dump())
 
