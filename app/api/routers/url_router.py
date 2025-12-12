@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.services.url_service import URLService
-from app.api.schemas.url_schema import URLCreate, URLResponse
+from app.api.schemas.url_schema import URLCreate, URLResponse, URLListSchema
 from app.api.schemas.request_schema import ResponseSchema, ErrorSchema
 from app.api.dependencies import get_url_service
 from app.models import ShortenedURL
@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse, JSONResponse
 
 router = APIRouter(prefix="/urls", tags=["ShortenedURL"])
 
-@router.post("/", response_model=URLResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=ResponseSchema[URLResponse], status_code=status.HTTP_201_CREATED)
 async def create_url(payload: URLCreate, service: URLService = Depends(get_url_service)):
     try:
         shortened_url = service.create(str(payload.original_url))

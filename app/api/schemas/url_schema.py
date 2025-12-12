@@ -4,7 +4,7 @@ from typing import Optional, Literal
 
 
 class URLCreate(BaseModel):
-    original_url: HttpUrl = Field(max_length=255)
+    original_url: HttpUrl
 
     @validator("original_url", pre=True)
     def validate_url(cls, v):
@@ -25,7 +25,7 @@ class URLResponse(BaseModel):
     expires_at: datetime | None = None
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class URLListSchema(BaseModel):
