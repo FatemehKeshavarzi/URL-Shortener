@@ -7,7 +7,7 @@ from fastapi.responses import RedirectResponse
 router = APIRouter(prefix="/urls", tags=["ShortenedURL"])
 
 @router.post("/", response_model=URLResponse, status_code=status.HTTP_201_CREATED)
-async def create_project(payload: URLCreate, service: URLService = Depends(get_url_service)):
+async def create_url(payload: URLCreate, service: URLService = Depends(get_url_service)):
     try:
         shortened_url = service.create(payload.original_url)
         return URLResponse(
@@ -37,7 +37,7 @@ async def create_project(payload: URLCreate, service: URLService = Depends(get_u
         )
 
 @router.get("/u/{code}", response_model=URLResponse)
-async def get_project(code: str, service: URLService = Depends(get_url_service)):
+async def get_url(code: str, service: URLService = Depends(get_url_service)):
     try:
         original_url = service.get_by_code(code)
         # URLResponse(
