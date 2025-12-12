@@ -1,9 +1,11 @@
-from typing import List, Optional
+from typing import List, Optional, Sequence
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 from app.models.url import ShortenedURL
 
 class URLRepository:
     def __init__(self, db):
-        self.db = db
+        self.db : Session = db
 
     def add(self, obj):
         self.db.add(obj)
@@ -22,3 +24,11 @@ class URLRepository:
     
     def get_by_origonal_url(self, origonal_url: str) -> Optional[ShortenedURL]:
         return self.db.query(ShortenedURL).filter(ShortenedURL.original_url == origonal_url).first()
+
+    def all(self) -> Sequence[ShortenedURL]:
+        stmt = select(ShortenedURL)
+        return self.db.scalars(stmt).all()
+    
+    def delete_by_code(self, url:ShortenedURL) -> None:
+        self.db.delete(url)
+        self.commit()
