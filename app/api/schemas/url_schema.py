@@ -10,10 +10,6 @@ class URLCreate(BaseModel):
     def validate_url(cls, v):
         if isinstance(v, str):
             v = v.strip()
-
-        allowed_tlds = [".com", ".ir", ".net"]
-        if not any(v.endswith(tld) for tld in allowed_tlds):
-            raise ValueError(f"URL must end with one of {allowed_tlds}")
         return v
 
 
